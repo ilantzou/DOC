@@ -1,1 +1,225 @@
-test
+﻿<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>高速公路攝影機</title>
+    <style>
+html{
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    table-layout:fixed;
+    word-break: break-all;
+}
+
+.div{
+    max-width: 100%;
+    text-align: center;
+}
+
+#highwaycamdiv {
+    text-align: center;
+}
+
+img { 
+    max-width: 80%; 
+    height: auto; 
+}
+
+#profileimagediv{
+    height: 300px;
+    width: 300px;
+}
+
+#contextinfo {
+    display: none
+}
+
+#profileinfo {
+    display: none
+}
+
+.buttongroup{
+    text-align: center;
+}
+
+button {
+    margin: 4px;
+}
+    </style>
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script>
+////////////////////////////////////////////////////////
+window.onload = function (e) {
+   liff.getProfile().then(function (profile) {
+      initializeApp(profile);
+   });
+};
+////////////////////////////////////////////////////////
+function initializeApp(profile) {
+    document.getElementById('displaynamefield').textContent = profile.displayName;
+    document.getElementById('statusmessagefield').textContent = profile.statusMessage;
+    var highwayCamDiv = document.getElementById('highwaycamdiv');
+            if (highwayCamDiv.firstElementChild) {
+                highwayCamDiv.removeChild(highwayCamDiv.firstElementChild);
+            }
+            var img = document.createElement('img');
+            img.src = 'http://202.39.180.203:8082/mjpeg/X01001612800101';
+            img.alt = 'HighwayCam';
+            highwayCamDiv.appendChild(img);
+            
+    // closeWindow call
+    document.getElementById('closewindowbutton').addEventListener('click', function () {
+        liff.closeWindow();
+    });
+}
+////////////////////////////////////////////////////////
+function HWCam(uri) {
+    var url = uri.split("&")[0];
+    var CamName = uri.split("&")[1];
+    var highwayCamDiv = document.getElementById('highwaycamdiv');
+    if (highwayCamDiv.firstElementChild) {
+        highwayCamDiv.removeChild(highwayCamDiv.firstElementChild);
+    }
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = CamName;
+    highwayCamDiv.appendChild(img);
+    document.getElementById("CamLocation").innerHTML = '<font color="blue">' + CamName + '</font>';
+}
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+function openURL(uri) {
+        liff.openWindow({
+            url: uri,
+        });
+}
+////////////////////////////////////////////////////////
+
+    </script>  
+</head>
+
+<body>
+    <div class="tablegroup"  align="center">
+            <div id="highwaycamdiv">
+               <img src="http://202.39.180.204:8082/mjpeg/X01001614800101">   
+            </div>
+             <p id="CamLocation">點選地點觀看即時影像</p>
+       <table border="1">
+            <tr>
+                <th>國1</th>
+                <th>國3</th>
+                <th>國5</th>
+            </tr>
+            <tr>
+                <td valign="top">
+<button onclick=HWCam('http://cctvn08.freeway.gov.tw:8080/stream/GetStreamVideo?pm=160,A40,2&▼基隆')>▼基隆</button>8<br/>
+<button onclick=HWCam('http://cctvn03.freeway.gov.tw:8080/stream/GetStreamVideo?pm=164,A44,6&▼汐止')>▼汐止</button>11.6<br/>
+<button onclick=HWCam('http://cctvn03.freeway.gov.tw:8080/stream/GetStreamVideo?pm=164,A44,7&▼汐止高架')>▼汐止高架</button>14.8<br/>
+<button onclick=HWCam('http://cctvn10.freeway.gov.tw:8080/streamX/fStreamVideo?pm=C0,1320&△五股')>△五股</button>32.2<br/>
+<button onclick=HWCam('http://cctvn08.freeway.gov.tw:8080/stream/GetStreamVideo?pm=164,A44,15&▼林口')>▼林口</button>41.9<br/>
+<button onclick=HWCam('http://cctvn09.freeway.gov.tw:8080/streamX/fStreamVideo?pm=C1,1530&△機場系統')>△機場系統</button>53.5<br/>
+<button onclick=HWCam('http://cctvn09.freeway.gov.tw:8080/streamX/fStreamVideo?pm=C2,1630&▼中壢')>▼中壢</button>64<br/>
+<button onclick=HWCam('http://cctvn04.freeway.gov.tw:8080/stream/GetStreamVideo?pm=164,A44,26&▼新竹系統')>▼新竹系統</button>99.4<br/>
+<hr/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=186&▼苗栗')>▼苗栗</button>132.8<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=1&▼泰安')>▼泰安</button>158.9<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=203&▼台中系統')>▼台中系統</button>166.4<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=205&▼豐原')>▼豐原</button>167.6<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=212&△台中')>△台中</button>178<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=216&△南屯')>△南屯</button>181.3<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=344&△彰化系統')>△彰化系統</button>198.8<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=4&△西螺 ')>△西螺 </button>226<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=242&▼雲林系統')>▼雲林系統</button>246.8<br/>
+<hr/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=05&△水上 ')>△水上 </button>268.4<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=09&△嘉義系統 ')>△嘉義系統 </button>273.8<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=46&△麻豆')>△麻豆</button>303.5<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=384&△台南系統')>△台南系統</button>316.2<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=338&△台南')>△台南</button>322.2<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=66&▼仁德系統')>▼仁德系統</button>330<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=115&▼岡山 ')>▼岡山 </button>350<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=334&▼鼎金系統')>▼鼎金系統</button>362.5<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=132&▼五甲系統')>▼五甲系統</button>370.6<br/>
+<hr/>
+
+                </td>
+                
+                <td valign="top">
+<button onclick=HWCam('http://cctvn07.freeway.gov.tw:8080/stream/GetStreamVideo?pm=211,A56,52&▼南港系統')>▼南港系統</button>16.5<br/>
+<button onclick=HWCam('http://cctvn05.freeway.gov.tw:8080/stream/GetStreamVideo?pm=168,A32,28&▼木柵')>▼木柵</button>25.7<br/>
+<button onclick=HWCam('http://cctvn05.freeway.gov.tw:8080/stream/GetStreamVideo?pm=167,A31,18&▼安坑')>▼安坑</button>35.3<br/>
+<button onclick=HWCam('http://210.242.179.85:8080/stream/GetStreamVideo?pm=211,A58,11&▼鶯歌')>▼鶯歌</button>55.2<br/>
+<button onclick=HWCam('http://210.242.179.86:8080/stream/GetStreamVideo?pm=210,A57,43&△大溪')>△大溪</button>63<br/>
+<button onclick=HWCam('http://210.242.179.86:8080/stream/GetStreamVideo?pm=211,A58,36&▼龍潭')>▼龍潭</button>68.6<br/>
+<button onclick=HWCam('http://210.242.179.86:8080/stream/GetStreamVideo?pm=211,A58,50&▼寶山')>▼寶山</button>96.7<br/>
+<button onclick=HWCam('http://210.242.179.85:8080/stream/GetStreamVideo?pm=211,A58,28&▼新竹系統')>▼新竹系統</button>102.6<br/>
+<hr/>
+<button onclick=HWCam('http://cctvn07.freeway.gov.tw:8080/stream/GetStreamVideo?pm=162,A42,23&▼香山')>▼香山</button>110<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=262&▼清水')>▼清水</button>173.4<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=435&▼彰化系統')>▼彰化系統</button>197.9<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=340&△中投')>△中投</button>210.1<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=277&▼草屯')>▼草屯</button>217.1<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=278&▼中興系統 ')>▼中興系統 </button>222.7<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=285&▼名間')>▼名間</button>237<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=287&△竹山')>△竹山</button>243.7<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=158&△古坑')>△古坑</button>273.6<br/>
+<hr/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=192&△水上系統')>△水上系統</button>300.6<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=232&▼官田系統')>▼官田系統</button>335<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=250&▼新化系統')>▼新化系統</button>347.1<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=256&▼關廟')>▼關廟</button>357<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=329&▼燕巢系統 ')>▼燕巢系統 </button>383.5<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=340&▼長治')>▼長治</button>400.2<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=353&▼竹田系統')>▼竹田系統</button>415.6<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=348&△南州')>△南州</button>425.6<br/>
+<button onclick=HWCam('http://wwwvbs.sfreeway.gov.tw/live-view/mjpg/video.cgi?camera=349&▼林邊')>▼林邊</button>439.4<br/>
+<hr/>
+
+                </td>
+                
+                <td valign="top">
+
+<button onclick=HWCam('http://202.39.180.212:8082/mjpeg/X01001602801101&▼南港')>▼南港</button>0<br/>
+<button onclick=HWCam('http://202.39.180.212:8082/mjpeg/X01001602900201&▼石碇')>▼石碇</button>3.76<br/>
+<button onclick=HWCam('http://202.39.180.211:8082/mjpeg/X01001606900101&△坪林出口')>△坪林出口</button>14.86<br/>
+<button onclick=HWCam('http://202.39.180.204:8082/mjpeg/X01001606900201&▼坪林入口')>▼坪林入口</button>15.05<br/>
+<button onclick=HWCam('http://202.39.180.212:8082/mjpeg/X01001612900101&▼頭城出口')>▼頭城出口</button>28.23<br/>
+<button onclick=HWCam('http://202.39.180.203:8082/mjpeg/X01001612800101&△頭城入口')>△頭城入口</button>28.28<br/>
+<button onclick=HWCam('http://202.39.180.204:8082/mjpeg/X01001612800501&△宜蘭')>△宜蘭</button>36.11<br/>
+<button onclick=HWCam('http://202.39.180.204:8082/mjpeg/X01001614800101&△羅東')>△羅東</button>45.48<br/>
+<hr/>
+<b>東部</b><br/>
+<button onclick=HWCam('http://117.56.188.163/T2-167K+632&蘇花改蘇澳端')>蘇花改蘇澳端</button>2-167.6<br/>
+<button onclick=HWCam('http://117.56.188.163/T9-113K+181&蘇花改東澳端')>蘇花改東澳端</button>9-113.1<br/>
+<button onclick=HWCam('http://117.56.188.164/T9-131K+300&南澳')>南澳</button>9-131.3<br/>
+<button onclick=HWCam('http://117.56.188.164/T8-168K+700&天祥')>天祥</button>8-168.7<br/>
+<button onclick=HWCam('http://117.56.55.25/T11-4K+900&花蓮台11丙')>花蓮台11丙</button>11-4.9<br/>
+<button onclick=HWCam('http://117.56.55.25/T11-67K+700&豐濱長虹橋')>豐濱長虹橋</button>11-67.7<br/>
+<button onclick=HWCam('http://117.56.234.218/T11-96K+600&長濱寧埔')>長濱寧埔</button>11-96.6<br/>
+<button onclick=HWCam('http://117.56.188.163/T9-249K+510&光復')>光復</button>9-249.5<br/>
+<button onclick=HWCam('http://117.56.188.163/T9-277K+850&瑞穗舞鶴')>瑞穗舞鶴</button>9-277.9<br/>
+<button onclick=HWCam('http://117.56.188.163/T9-289K+650&玉里')>玉里</button>9-289.7<br/>
+<button onclick=HWCam('http://117.56.234.217/T9-393K+130&太麻里')>太麻里</button>9-393.1<br/>
+<button onclick=HWCam('http://117.56.234.217/T9-412K+590&金崙')>金崙</button>9-412.6<br/>
+<button onclick=HWCam('http://117.56.234.217/T9-417K+400&南迴多良')>南迴多良</button>9-417.4<br/>
+<button onclick=HWCam('http://117.56.234.217/T9-441K+000&南興地磅')>南興地磅</button>9-441<br/>
+<button onclick=HWCam('http://117.56.234.217/T9-447K+500&南迴森永')>南迴森永</button>9-447<br/>
+
+<b>國6</b><br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=402&→霧峰系統')>→霧峰系統</button>17.06<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=121&←愛蘭')>←愛蘭</button>29.6<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=89&→埔里')>→埔里</button>34.68<br/>
+<hr/>
+<b>快78</b><br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=44&→元長')>→元長</button>20<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=55&←虎尾')>←虎尾</button>25.46<br/>
+<button onclick=HWCam('http://210.241.63.120/abs2mjpg/bmjpg?camera=53&←古坑')>←古坑</button>39.43<br/>
+
+
+                </td>
+            </tr>
+        </table>
+     </div>
+</body>
