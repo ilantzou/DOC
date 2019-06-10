@@ -1,2 +1,2 @@
-# IFTTT
-# Line Notify
+# IFTTT <a href=https://github.com/ilantzou/DOC/blob/master/IFTTT.pdf>PDF</a>
+# Line Notify <a href=https://github.com/ilantzou/DOC/blob/master/GAS2LineNofity.pdf>PDF</a>
